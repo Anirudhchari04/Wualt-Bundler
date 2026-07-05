@@ -1,0 +1,31 @@
+<svg width="1400" height="800" viewBox="0 0 1400 800" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1400" height="800" rx="36" fill="#0F172A"/>
+  <rect x="70" y="90" width="1260" height="620" rx="28" fill="#111827" stroke="#334155" stroke-width="2"/>
+  <text x="100" y="150" fill="#F8FAFC" font-family="Segoe UI, Arial, sans-serif" font-size="34" font-weight="700">Bundle Tracker</text>
+  <text x="100" y="190" fill="#CBD5E1" font-family="Segoe UI, Arial, sans-serif" font-size="22">Offline-first bundle movement with immutable audit history</text>
+
+  <rect x="100" y="240" width="340" height="220" rx="24" fill="#1E293B" stroke="#38BDF8" stroke-width="2"/>
+  <text x="132" y="286" fill="#F8FAFC" font-family="Segoe UI, Arial, sans-serif" font-size="24" font-weight="600">Scanner UI</text>
+  <text x="132" y="328" fill="#CBD5E1" font-family="Segoe UI, Arial, sans-serif" font-size="20">Find bundle</text>
+  <text x="132" y="360" fill="#CBD5E1" font-family="Segoe UI, Arial, sans-serif" font-size="20">Advance stage</text>
+  <text x="132" y="392" fill="#CBD5E1" font-family="Segoe UI, Arial, sans-serif" font-size="20">Capture offline scans</text>
+
+  <rect x="530" y="240" width="340" height="220" rx="24" fill="#1E293B" stroke="#22C55E" stroke-width="2"/>
+  <text x="562" y="286" fill="#F8FAFC" font-family="Segoe UI, Arial, sans-serif" font-size="24" font-weight="600">Sync Engine</text>
+  <text x="562" y="328" fill="#CBD5E1" font-family="Segoe UI, Arial, sans-serif" font-size="20">Queue pending scans</text>
+  <text x="562" y="360" fill="#CBD5E1" font-family="Segoe UI, Arial, sans-serif" font-size="20">Replay on reconnect</text>
+  <text x="562" y="392" fill="#CBD5E1" font-family="Segoe UI, Arial, sans-serif" font-size="20">Resolve conflicts safely</text>
+
+  <rect x="960" y="240" width="340" height="220" rx="24" fill="#1E293B" stroke="#F59E0B" stroke-width="2"/>
+  <text x="992" y="286" fill="#F8FAFC" font-family="Segoe UI, Arial, sans-serif" font-size="24" font-weight="600">Audit Record</text>
+  <text x="992" y="328" fill="#CBD5E1" font-family="Segoe UI, Arial, sans-serif" font-size="20">Immutable ScanLog</text>
+  <text x="992" y="360" fill="#CBD5E1" font-family="Segoe UI, Arial, sans-serif" font-size="20">Flag backward moves</text>
+  <text x="992" y="392" fill="#CBD5E1" font-family="Segoe UI, Arial, sans-serif" font-size="20">Preserve production truth</text>
+
+  <path d="M440 350H530" stroke="#94A3B8" stroke-width="4" stroke-linecap="round"/>
+  <path d="M870 350H960" stroke="#94A3B8" stroke-width="4" stroke-linecap="round"/>
+
+  <rect x="180" y="520" width="1040" height="140" rx="24" fill="#0B1220" stroke="#475569" stroke-width="2"/>
+  <text x="220" y="570" fill="#F8FAFC" font-family="Segoe UI, Arial, sans-serif" font-size="24" font-weight="600">Stack</text>
+  <text x="220" y="610" fill="#CBD5E1" font-family="Segoe UI, Arial, sans-serif" font-size="20">Next.js • React • TypeScript • Prisma • Dexie • Tailwind • SQLite</text>
+</svg>
