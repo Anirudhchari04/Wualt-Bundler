@@ -1,0 +1,28 @@
+# Architecture Diagram
+
+```mermaid
+flowchart TD
+  Browser[Browser]
+  NextJS[Next.js]
+  APIRoutes[API Routes]
+  ServiceLayer[Service Layer]
+  Prisma[Prisma]
+  SQLite[SQLite]
+  IndexedDB[IndexedDB (Dexie)]
+  SyncEngine[Sync Engine]
+  SyncEndpoint[POST /api/sync]
+  Backend[Backend]
+
+  Browser --> NextJS
+  NextJS --> APIRoutes
+  APIRoutes --> ServiceLayer
+  ServiceLayer --> Prisma
+  Prisma --> SQLite
+
+  Browser --> IndexedDB
+  IndexedDB --> SyncEngine
+  SyncEngine --> SyncEndpoint
+  SyncEndpoint --> Backend
+  Backend --> ServiceLayer
+  ServiceLayer --> Prisma
+```

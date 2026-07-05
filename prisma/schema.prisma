@@ -1,0 +1,53 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+enum ProductionStage {
+  CUTTING
+  SEWING
+  FINISHING
+  PACKING
+}
+
+enum BundleStatus {
+  ACTIVE
+  FLAGGED
+  COMPLETED
+}
+
+model Bundle {
+  id           String          @id @default(cuid())
+  orderId      String
+  style        String
+  size         String
+  quantity     Int
+  currentStage ProductionStage @default(CUTTING)
+  status       BundleStatus    @default(ACTIVE)
+  createdAt    DateTime        @default(now())
+  updatedAt    DateTime        @updatedAt
+  scanLogs     ScanLog[]
+
+  @@index([orderId])
+  @@index([currentStage, status])
+}
+
+model ScanLog {
+  id         String          @id @default(cuid())
+  clientId   String          @unique
+  bundleId   String
+  stage      ProductionStage
+  scannedAt  DateTime
+  receivedAt DateTime        @default(now())
+  deviceId   String
+  flagged    Boolean         @default(false)
+  flagReason String?
+  bundle     Bundle          @relation(fields: [bundleId], references: [id], onDelete: Restrict)
+
+  @@index([bundleId, scannedAt])
+  @@index([flagged])
+}
