@@ -13,6 +13,9 @@
     "db:seed": "prisma db seed",
     "db:studio": "prisma studio"
   },
+  "prisma": {
+    "seed": "tsx prisma/seed.ts"
+  },
   "dependencies": {
     "@prisma/client": "^6.19.3",
     "dexie": "^4.4.4",
