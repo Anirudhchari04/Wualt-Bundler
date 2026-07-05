@@ -1,20 +1,24 @@
-# Bundle Tracker | Project Nexus
+# Bundle Tracker
 
-A production-stage bundle tracking demo built with Next.js. This app supports online bundle inspection, offline scan queueing, and immutable audit history reconciliation.
+Bundle Tracker is a production-oriented demo application for moving garment bundles through a staged workflow while preserving an immutable audit trail. It combines a modern Next.js interface with offline-first scan capture, queued synchronization, and conflict-safe reconciliation so the experience remains usable even when the floor network drops.
 
-## Overview
+## What this project does
 
-Bundle Tracker helps production teams scan garment bundles, advance them through stages, and preserve an immutable audit trail. It supports offline scanning with local IndexedDB persistence, queued sync, and conflict-safe backend reconciliation.
+- Lets a user locate a bundle and advance it to the next production stage
+- Captures scans locally when offline and syncs them later when connectivity returns
+- Preserves every scan in an immutable history so no audit entry is overwritten
+- Flags backward-stage movements instead of silently discarding them
+- Demonstrates a practical conflict-resolution model for distributed scan events
 
-## Architecture
+## Key features
 
-- Browser-based React UI with Next.js App Router
-- Offline cache and queue storage in IndexedDB via Dexie
-- Backend API routes powered by Next.js route handlers
-- Service layer for bundle and scan operations
-- Prisma ORM with SQLite persistence
+- Responsive scanner workflow built with Next.js and React
+- IndexedDB-backed offline queue and cache via Dexie
+- API routes for bundle lookup, scan advancement, and sync reconciliation
+- Prisma + SQLite persistence for a lightweight local-first demo database
+- Seed data for quick onboarding and demo runs
 
-## Tech Stack
+## Tech stack
 
 - Next.js 15
 - React 19
@@ -25,46 +29,7 @@ Bundle Tracker helps production teams scan garment bundles, advance them through
 - Dexie
 - Zod
 
-## Folder Structure
-
-- `app/` — pages, routes, and view composition
-- `components/` — reusable UI elements
-- `hooks/` — custom React behavior
-- `lib/` — shared utilities and API helpers
-- `modules/` — service layer and validation logic
-- `offline/` — IndexedDB persistence and cache helpers
-- `prisma/` — schema and migrations
-- `services/` — front-end API wrappers
-- `types/` — application type definitions
-- `scripts/` — test and automation scripts
-
-## Database Design
-
-- `Bundle`
-  - `id`, `orderId`, `style`, `size`, `quantity`
-  - `currentStage`, `status`, `createdAt`, `updatedAt`
-  - relation to `ScanLog`
-- `ScanLog`
-  - `clientId` unique audit identifier
-  - `bundleId`, `stage`, `scannedAt`, `receivedAt`, `deviceId`
-  - `flagged`, `flagReason`
-
-## Offline Sync
-
-- Offline scans are stored in IndexedDB as a pending queue
-- Bundle metadata is cached locally to support offline lookup
-- The app tracks connectivity and allows forced offline mode
-- Queued scans are posted to `POST /api/sync` when online
-- Existing backend sync logic is preserved
-
-## Conflict Handling
-
-- All scans are preserved in an immutable `ScanLog`
-- Duplicate or conflicting offline scans are detected by `clientId`
-- Backward stage movements are flagged instead of overwritten
-- Current stage is derived from the highest recorded stage by order
-
-## Getting Started
+## Getting started
 
 ```bash
 # Install dependencies
@@ -80,15 +45,20 @@ npm run db:seed
 npm run dev
 ```
 
-Open `http://localhost:3000`.
+Open http://localhost:3000.
 
-## Seed Database
+## Project structure
 
-```bash
-npm run db:seed
-```
+- app/ — routes, pages, and UI composition
+- components/ — reusable interface components
+- hooks/ — React hooks for online and offline state
+- modules/ — business logic and validation layers
+- offline/ — local queue and cache persistence
+- prisma/ — schema, migrations, and seed data
+- services/ — frontend API wrappers
+- types/ — shared domain types
 
-## Build and Verify
+## Verification and demo commands
 
 ```bash
 npm run build
@@ -96,15 +66,6 @@ npm run lint
 npm run test:api
 ```
 
-## API Endpoints
-
-- `GET /api/bundles`
-- `POST /api/bundles`
-- `GET /api/bundles/[id]`
-- `POST /api/bundles/[id]/scan`
-- `POST /api/sync`
-
 ## Notes
 
-- This app is designed to preserve audit history and support offline queueing.
-- Future improvements include stable device IDs, richer merge review, and audit export.
+This project is intentionally scoped as a polished demo for offline-first bundle handling and audit-safe conflict resolution. It is designed to be extended into a more production-grade system with server-issued device identities, stronger sync recovery, and supervisor review workflows.
